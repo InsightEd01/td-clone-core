@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Send, Repeat, Receipt, Camera, Wallet, ShoppingBag, Utensils, Banknote } from "lucide-react";
 import MobileShell from "@/components/MobileShell";
+import { NavLink } from "react-router-dom";
 import Seo from "@/components/Seo";
 
 const actions = [
@@ -50,28 +51,30 @@ export default function Index() {
             />
           </div>
 
-          <Card className="mt-4 bg-background/10 backdrop-blur border-white/10">
-            <CardContent className="pt-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs opacity-80">Current Balance</p>
-                  <p className="text-3xl font-bold">$30,987.00</p>
+          <NavLink to="/card" aria-label="View card details" className="block transition-transform duration-200 hover:scale-105">
+            <Card className="mt-4 bg-background/10 backdrop-blur border-white/10">
+              <CardContent className="pt-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs opacity-80">Current Balance</p>
+                    <p className="text-3xl font-bold">$30,987.00</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs opacity-80">Card •••• 9875</p>
+                    <p className="text-xs opacity-80">Exp 03/24</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs opacity-80">Card •••• 9875</p>
-                  <p className="text-xs opacity-80">Exp 03/24</p>
-                </div>
-              </div>
-              <div className="mt-4 grid grid-cols-4 gap-2">
+                <div className="mt-4 grid grid-cols-4 gap-2">
                 {actions.map(({ label, icon: Icon }) => (
                   <Button key={label} variant="action" size="icon" className="h-16 w-16 flex flex-col">
                     <Icon className="h-5 w-5" />
                     <span className="mt-1 text-xs">{label}</span>
                   </Button>
                 ))}
-              </div>
-            </CardContent>
-          </Card>
+                </div>
+              </CardContent>
+            </Card>
+          </NavLink>
         </div>
       </section>
 
