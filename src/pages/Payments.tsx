@@ -56,18 +56,9 @@ const quickActions = [
   },
 ];
 
-const recentPayments = [
-  { id: "1", recipient: "Sarah Johnson", amount: 125.00, type: "person", date: "Jan 8", status: "completed" },
-  { id: "2", recipient: "City Hydro", amount: 89.45, type: "bill", date: "Jan 7", status: "completed" },
-  { id: "3", recipient: "Netflix", amount: 15.49, type: "subscription", date: "Jan 6", status: "completed" },
-  { id: "4", recipient: "Mike Chen", amount: 50.00, type: "person", date: "Jan 5", status: "pending" },
-];
+const recentPayments = [];
 
-const scheduledPayments = [
-  { id: "1", recipient: "Rent Payment", amount: 1850.00, date: "Jan 15", frequency: "Monthly" },
-  { id: "2", recipient: "Car Insurance", amount: 156.78, date: "Jan 20", frequency: "Monthly" },
-  { id: "3", recipient: "Internet Bill", amount: 79.99, date: "Jan 25", frequency: "Monthly" },
-];
+const scheduledPayments = [];
 
 const paymentServices = [
   {
@@ -150,39 +141,10 @@ export default function Payments() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="p-0">
-            <div className="divide-y">
-              {recentPayments.map((payment) => (
-                <div key={payment.id} className="flex items-center justify-between p-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-full ${
-                      payment.type === 'person' ? 'bg-blue-100 text-blue-600' :
-                      payment.type === 'bill' ? 'bg-purple-100 text-purple-600' :
-                      'bg-orange-100 text-orange-600'
-                    }`}>
-                      {payment.type === 'person' ? <Users className="h-4 w-4" /> :
-                       payment.type === 'bill' ? <Receipt className="h-4 w-4" /> :
-                       <Repeat className="h-4 w-4" />}
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">{payment.recipient}</p>
-                      <div className="flex items-center gap-2">
-                        <p className="text-xs text-muted-foreground">{payment.date}</p>
-                        <Badge 
-                          variant={payment.status === 'completed' ? 'default' : 'secondary'}
-                          className="text-xs px-1.5 py-0.5"
-                        >
-                          {payment.status}
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-sm">-${payment.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
-                    <ArrowUpRight className="h-3 w-3 text-muted-foreground ml-auto" />
-                  </div>
-                </div>
-              ))}
+          <CardContent className="p-4">
+            <div className="text-center text-muted-foreground">
+              <p className="text-sm">No recent payments</p>
+              <p className="text-xs mt-1">Your payment history will appear here</p>
             </div>
           </CardContent>
         </Card>
@@ -200,25 +162,10 @@ export default function Payments() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="p-0">
-            <div className="divide-y">
-              {scheduledPayments.map((payment) => (
-                <div key={payment.id} className="flex items-center justify-between p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-full bg-green-100 text-green-600">
-                      <Clock className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">{payment.recipient}</p>
-                      <p className="text-xs text-muted-foreground">Due {payment.date} • {payment.frequency}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-sm">${payment.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
-                    <ChevronRight className="h-3 w-3 text-muted-foreground ml-auto" />
-                  </div>
-                </div>
-              ))}
+          <CardContent className="p-4">
+            <div className="text-center text-muted-foreground">
+              <p className="text-sm">No scheduled payments</p>
+              <p className="text-xs mt-1">Set up recurring payments for bills and transfers</p>
             </div>
           </CardContent>
         </Card>

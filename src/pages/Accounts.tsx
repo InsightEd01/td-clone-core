@@ -37,47 +37,17 @@ const accounts = [
     icon: PiggyBank,
     color: "bg-blue-500"
   },
-  {
-    id: "cc-001",
-    name: "GreenBank Rewards Card",
-    type: "Credit Card",
-    accountNumber: "****3421",
-    balance: -2847.65,
-    availableBalance: 7152.35,
-    creditLimit: 10000,
-    interestRate: 18.99,
-    lastStatement: "Jan 10, 2025",
-    status: "Active",
-    overdraftProtection: false,
-    icon: CreditCard,
-    color: "bg-purple-500"
-  },
-  {
-    id: "inv-001",
-    name: "Investment Portfolio",
-    type: "Investment",
-    accountNumber: "****8293",
-    balance: 28945.12,
-    availableBalance: 28945.12,
-    interestRate: 7.8,
-    lastStatement: "Jan 31, 2025",
-    status: "Active",
-    overdraftProtection: false,
-    icon: TrendingUp,
-    color: "bg-orange-500"
-  }
+
 ];
 
 const recentTransactions = [
   { id: "1", description: "Deposit from Edward Smith", amount: 4800000.0, date: "Jan 22", type: "deposit" },
-  { id: "2", description: "Starbucks Coffee", amount: -6.25, date: "Jan 8", type: "purchase" },
-  { id: "3", description: "Transfer to Savings", amount: -500.00, date: "Jan 7", type: "transfer" },
-  { id: "4", description: "Amazon Purchase", amount: -89.99, date: "Jan 6", type: "purchase" },
+
 ];
 
 export default function Accounts() {
   const [showBalances, setShowBalances] = useState(true);
-  const totalBalance = accounts.reduce((sum, acc) => sum + (acc.balance > 0 ? acc.balance : 0), 0);
+  const totalBalance = accounts.find(acc => acc.id === "chq-001")?.balance ?? 0;
 
   return (
     <MobileShell>
@@ -113,7 +83,7 @@ export default function Accounts() {
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 mb-4">
           <p className="text-sm text-emerald-100 mb-1">Total Balance</p>
           <p className="text-3xl font-bold text-white">
-            {showBalances ? `$${totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : "••••••••"}
+            {showBalances ? `$${totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })} USD` : "••••••••"}
           </p>
         </div>
 
@@ -158,23 +128,7 @@ export default function Accounts() {
               >
                 <Card className="border-0 shadow-md hover:shadow-lg bg-white">
                   <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-full ${account.color} text-white`}>
-                          <IconComponent className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground">{account.name}</h3>
-                          <p className="text-sm text-muted-foreground">{account.type} • {account.accountNumber}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant={account.status === "Active" ? "default" : "secondary"} className="text-xs">
-                          {account.status}
-                        </Badge>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                      </div>
-                    </div>
+                    
                     
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
@@ -204,9 +158,6 @@ export default function Accounts() {
                       <div className="flex justify-between items-center pt-1 border-t border-gray-100">
                         <span className="text-xs text-muted-foreground">
                           {isCredit ? "APR" : "Interest Rate"}: {account.interestRate}%
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          Last Statement: {account.lastStatement}
                         </span>
                       </div>
                       

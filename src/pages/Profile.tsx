@@ -15,28 +15,22 @@ import {
   Settings, 
   HelpCircle, 
   LogOut,
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
-  Star,
   Download,
   Lock,
   Smartphone,
   AlertTriangle,
-  CheckCircle
+  CheckCircle,
+  User,
+  Globe,
+  Calendar
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 const customerInfo = {
-  name: "Jayden Green",
-  email: "jayden@example.com",
-  phone: "+1 (555) 123-4567",
-  address: "123 Main Street, Toronto, ON M5V 3A8",
-  memberSince: "March 2019",
-  customerTier: "Premium",
-  lastLogin: "Today at 2:34 PM"
+  name: "ASUNCION CALUMAG ERLINDA",
+  country: "Philippines",
+  dateOfBirth: "December 8, 1955"
 };
 
 const securitySettings = [
@@ -95,19 +89,12 @@ export default function Profile() {
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4">
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16 border-2 border-white/20">
-              <AvatarImage src="" alt="User avatar" />
-              <AvatarFallback className="text-lg font-semibold bg-emerald-600 text-white">JG</AvatarFallback>
+              <AvatarImage src="/profile picture.jpg" alt="User avatar" />
+              <AvatarFallback className="text-lg font-semibold bg-emerald-600 text-white">AC</AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">{customerInfo.name}</h2>
-              <p className="text-sm text-emerald-100">{customerInfo.email}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-100 border-emerald-400/30">
-                  <Star className="h-3 w-3 mr-1" />
-                  {customerInfo.customerTier}
-                </Badge>
-                <span className="text-xs text-emerald-200">Member since {customerInfo.memberSince}</span>
-              </div>
+
             </div>
           </div>
         </div>
@@ -125,10 +112,10 @@ export default function Profile() {
           <CardContent className="space-y-3">
             <div className="flex items-center justify-between py-2">
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-muted-foreground" />
+                <User className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-sm font-medium">Phone Number</p>
-                  <p className="text-xs text-muted-foreground">{customerInfo.phone}</p>
+                  <p className="text-sm font-medium">Full Name</p>
+                  <p className="text-xs text-muted-foreground">{customerInfo.name}</p>
                 </div>
               </div>
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -136,21 +123,10 @@ export default function Profile() {
             
             <div className="flex items-center justify-between py-2">
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-sm font-medium">Email Address</p>
-                  <p className="text-xs text-muted-foreground">{customerInfo.email}</p>
-                </div>
-              </div>
-              <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            </div>
-            
-            <div className="flex items-center justify-between py-2">
-              <div className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium">Mailing Address</p>
-                  <p className="text-xs text-muted-foreground">{customerInfo.address}</p>
+                  <p className="text-sm font-medium">Date of Birth</p>
+                  <p className="text-xs text-muted-foreground">{customerInfo.dateOfBirth}</p>
                 </div>
               </div>
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -219,12 +195,14 @@ export default function Profile() {
           <CardContent className="space-y-4">
             {notificationSettings.map((setting) => (
               <div key={setting.id} className="flex items-center justify-between">
-                <div className="flex-1">
-                  <Label htmlFor={setting.id} className="text-sm font-medium cursor-pointer">
-                    {setting.label}
-                  </Label>
-                  <p className="text-xs text-muted-foreground mt-0.5">{setting.description}</p>
-                </div>
+                {setting.id !== 'security-alerts' && (
+                  <div className="flex-1">
+                    <Label htmlFor={setting.id} className="text-sm font-medium cursor-pointer">
+                      {setting.label}
+                    </Label>
+                    <p className="text-xs text-muted-foreground mt-0.5">{setting.description}</p>
+                  </div>
+                )}
                 <Switch
                   id={setting.id}
                   checked={notificationToggles[setting.id]}
@@ -303,7 +281,7 @@ export default function Profile() {
           <CardContent className="p-4">
             <div className="text-center space-y-2">
               <p className="text-sm text-muted-foreground">GreenBank Mobile</p>
-              <p className="text-xs text-muted-foreground">Version 2.1.4 • Last login: {customerInfo.lastLogin}</p>
+              <p className="text-xs text-muted-foreground">Version 2.1.4</p>
               <p className="text-xs text-muted-foreground">© 2025 GreenBank. All rights reserved.</p>
             </div>
           </CardContent>
