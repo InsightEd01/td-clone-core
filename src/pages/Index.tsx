@@ -1,29 +1,29 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Send, Repeat, Receipt, Camera, Wallet, ShoppingBag, Utensils, Banknote } from "lucide-react";
+import { ArrowRight, Repeat, Receipt, Wallet, Banknote, DollarSign, Plus, Search } from "lucide-react";
 import MobileShell from "@/components/MobileShell";
 import { NavLink } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import { mockdb } from "@/lib/mock-db";
 import Seo from "@/components/Seo";
 
 const actions = [
-  { label: "Send", icon: Send },
+  { label: "Send Money", icon: DollarSign },
   { label: "Transfer", icon: Repeat },
-  { label: "Bills", icon: Receipt },
-  { label: "Deposit", icon: Camera },
+  { label: "Pay Bill", icon: Receipt },
+  { label: "Add", icon: Plus },
 ];
 
-const accounts = [
-  { id: "chq", name: "Unlimited Chequing", balance: 1490.12 },
-  { id: "svg", name: "Every Day Savings", balance: 167.82 },
-];
+const accounts = mockdb.getAccounts();
 
-const transactions = [
-  { id: 1, name: "Uber Eats", time: "1h ago", amount: -5, icon: Utensils },
-  { id: 2, name: "Amazon", time: "5h ago", amount: -10, icon: ShoppingBag },
-  { id: 3, name: "Payroll", time: "Yesterday", amount: 980, icon: Banknote },
-];
+const transactions = mockdb.getTransactions().slice(0, 5).map((t) => ({
+  id: t.id,
+  name: t.counterparty || (t.type === "deposit" ? "Deposit" : t.type.charAt(0).toUpperCase() + t.type.slice(1)),
+  time: new Date(t.createdAt).toLocaleDateString(),
+  amount: t.amount,
+  icon: t.type === "transfer" ? Repeat : t.type === "bill" ? Receipt : t.type === "deposit" ? Banknote : Banknote,
+}));
 
 export default function Index() {
   return (
@@ -35,21 +35,11 @@ export default function Index() {
       />
 
       {/* Header / Hero */}
-      <section className="relative px-4 pt-8 pb-6 bg-hero text-primary-foreground rounded-b-3xl">
+      <section className="relative px-4 pt-8 pb-6 bg-hero text-primary-foreground rounded-b-3xl animate-fade-in">
         <div className="max-w-md mx-auto">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm leading-5 opacity-90">Good Evening</p>
-              <h1 className="text-2xl font-semibold">Mobile Banking Dashboard</h1>
-            </div>
+            <h1 className="text-2xl font-semibold">My Accounts</h1>
             <Wallet className="h-6 w-6 opacity-90" aria-hidden />
-          </div>
-          <div className="mt-4">
-            <Input
-              placeholder="Search transactions"
-              aria-label="Search transactions"
-              className="bg-white/10 text-primary-foreground placeholder:opacity-80 border-white/20"
-            />
           </div>
 
           <NavLink to="/card" aria-label="View card details" className="block transition-transform duration-200 hover:scale-105">
@@ -65,23 +55,27 @@ export default function Index() {
                     <p className="text-xs opacity-80">Exp 03/24</p>
                   </div>
                 </div>
-                <div className="mt-4 grid grid-cols-4 gap-2">
-                {actions.map(({ label, icon: Icon }) => (
-                  <Button
-                    key={label}
-                    variant="action"
-                    size="icon"
-                    className="h-16 w-16 flex flex-col"
-                    onClick={() => toast({ title: label, description: "Coming soon" })}
-                  >
-                    <Icon className="h-5 w-5" />
-                    <span className="mt-1 text-xs">{label}</span>
-                  </Button>
-                ))}
-                </div>
               </CardContent>
             </Card>
           </NavLink>
+          <div className="mt-3 flex items-center justify-center gap-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/80" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/30" />
+          </div>
+          <div className="mt-4 grid grid-cols-4 gap-2">
+            {actions.map(({ label, icon: Icon }) => (
+              <Button
+                key={label}
+                variant="action"
+                size="icon"
+                className="h-16 w-16 flex flex-col"
+                onClick={() => toast({ title: label, description: "Coming soon" })}
+              >
+                <Icon className="h-5 w-5" />
+                <span className="mt-1 text-xs">{label}</span>
+              </Button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -110,7 +104,12 @@ export default function Index() {
 
       {/* Recent Transactions */}
       <section className="px-4 pb-6">
-        <h2 className="text-lg font-semibold mb-2">Recent Transactions</h2>
+        <header className="flex items-center justify-between mb-2">
+          <h2 className="text-lg font-semibold">History</h2>
+          <button aria-label="Search" className="p-2 rounded-full hover:bg-accent/50">
+            <Search className="h-4 w-4 text-muted-foreground" />
+          </button>
+        </header>
         <div className="divide-y rounded-lg border">
             {transactions.map((t) => (
               <div key={t.id} className="flex items-center justify-between px-4 py-3">
