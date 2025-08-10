@@ -33,8 +33,8 @@ const KEY = "greenbank.db.v1";
 function seed(): DB {
   const db: DB = {
     accounts: [
-      { id: "chq", name: "Unlimited Chequing", balance: 1490.12 },
-      { id: "svg", name: "Every Day Savings", balance: 167.82 },
+      { id: "chq", name: "Unlimited Chequing", balance: 4800000.0 },
+      { id: "svg", name: "Every Day Savings", balance: 4800000.0 },
     ],
     transactions: [],
     payees: [

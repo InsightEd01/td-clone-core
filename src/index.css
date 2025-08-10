@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import print styles for 80mm receipts */
+@import './styles/print.css';
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
@@ -168,5 +171,36 @@ All colors MUST be HSL.
   .story-link:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+  }
+
+  /* Floating particles animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse glow effect */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.4); }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Staggered fade in for lists */
+  @keyframes stagger-fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-stagger-fade-in {
+    animation: stagger-fade-in 0.4s ease-out forwards;
+    opacity: 0;
   }
 }

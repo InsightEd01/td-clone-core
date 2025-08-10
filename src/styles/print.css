@@ -1,0 +1,56 @@
+/* 80mm Receipt Print Styles */
+@media print {
+  /* Hide everything except the receipt content */
+  body * {
+    visibility: hidden;
+  }
+  
+  .receipt-content, .receipt-content * {
+    visibility: visible;
+  }
+  
+  .receipt-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    line-height: 1.2;
+    color: black;
+    background: white;
+  }
+  
+  /* Remove margins and padding for print */
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+  
+  /* Ensure proper formatting for receipt */
+  .receipt-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 5mm;
+  }
+}
+
+/* Receipt preview styles */
+.receipt-preview {
+  width: 80mm;
+  max-width: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  line-height: 1.2;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.receipt-preview pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 5mm;
+}

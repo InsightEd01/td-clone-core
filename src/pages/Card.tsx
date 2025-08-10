@@ -32,7 +32,7 @@ export default function CardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs opacity-80">Current Balance</p>
-                  <p className="text-3xl font-bold">$3,225.00</p>
+                  <p className="text-3xl font-bold">$4,800,000.00 USD</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs opacity-80">Apple Pay</p>
