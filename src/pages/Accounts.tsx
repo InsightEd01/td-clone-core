@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Send, Repeat, Receipt, Camera } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 
 export default function Accounts() {
   return (
@@ -22,7 +23,13 @@ export default function Accounts() {
             { label: "Bills", icon: Receipt },
             { label: "Deposit", icon: Camera },
           ].map(({ label, icon: Icon }) => (
-            <Button key={label} variant="action" size="icon" className="h-16 w-16 flex flex-col">
+            <Button
+              key={label}
+              variant="action"
+              size="icon"
+              className="h-16 w-16 flex flex-col"
+              onClick={() => toast({ title: label, description: "Coming soon" })}
+            >
               <Icon className="h-5 w-5" />
               <span className="mt-1 text-xs">{label}</span>
             </Button>

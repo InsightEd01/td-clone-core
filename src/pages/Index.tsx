@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Send, Repeat, Receipt, Camera, Wallet, ShoppingBag, Utensils, Banknote } from "lucide-react";
 import MobileShell from "@/components/MobileShell";
 import { NavLink } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 import Seo from "@/components/Seo";
 
 const actions = [
@@ -66,7 +67,13 @@ export default function Index() {
                 </div>
                 <div className="mt-4 grid grid-cols-4 gap-2">
                 {actions.map(({ label, icon: Icon }) => (
-                  <Button key={label} variant="action" size="icon" className="h-16 w-16 flex flex-col">
+                  <Button
+                    key={label}
+                    variant="action"
+                    size="icon"
+                    className="h-16 w-16 flex flex-col"
+                    onClick={() => toast({ title: label, description: "Coming soon" })}
+                  >
                     <Icon className="h-5 w-5" />
                     <span className="mt-1 text-xs">{label}</span>
                   </Button>
@@ -82,7 +89,9 @@ export default function Index() {
       <section className="px-4 py-5">
         <header className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold">My Accounts</h2>
-          <Button variant="link" className="p-0">View all</Button>
+          <Button asChild variant="link" className="p-0">
+            <NavLink to="/accounts">View all</NavLink>
+          </Button>
         </header>
         <div className="space-y-3">
           {accounts.map((a) => (

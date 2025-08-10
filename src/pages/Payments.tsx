@@ -1,6 +1,7 @@
 import MobileShell from "@/components/MobileShell";
 import Seo from "@/components/Seo";
 import { ChevronRight } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 export default function Payments() {
   const sections = [
@@ -20,7 +21,7 @@ export default function Payments() {
               <h2 className="text-sm text-muted-foreground mb-2">{s.title}</h2>
               <div className="divide-y rounded-lg border">
                 {s.items.map((label) => (
-                  <button key={label} className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-accent/50">
+                  <button key={label} className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-accent/50" onClick={() => toast({ title: label, description: "Coming soon" })}>
                     <span>{label}</span>
                     <ChevronRight className="h-4 w-4 text-muted-foreground" aria-hidden />
                   </button>

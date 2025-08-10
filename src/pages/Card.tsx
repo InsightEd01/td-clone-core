@@ -19,6 +19,7 @@ const data = [
 ];
 
 export default function CardPage() {
+  const total = data.reduce((sum, d) => sum + d.value, 0);
   return (
     <MobileShell>
       <Seo title="Debit Card — GreenBank" description="View card details, history and analytics." canonical={window.location.href} />
@@ -74,9 +75,13 @@ export default function CardPage() {
             </div>
           </TabsContent>
           <TabsContent value="analytics" className="mt-4">
+            <div className="flex items-center justify-between mb-3 text-sm">
+              <span className="text-muted-foreground">January 01.01.2023 - 31.01.2023</span>
+              <span className="font-medium">Total ${total.toLocaleString()}</span>
+            </div>
             <Card>
               <CardContent className="pt-6">
-                <div className="h-64">
+                <div className="h-64 relative">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -86,6 +91,8 @@ export default function CardPage() {
                         innerRadius={60}
                         outerRadius={90}
                         stroke="hsl(var(--border))"
+                        labelLine={false}
+                        label={({ percent }) => `${Math.round((percent || 0) * 100)}%`}
                       >
                         {data.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
@@ -93,6 +100,12 @@ export default function CardPage() {
                       </Pie>
                     </PieChart>
                   </ResponsiveContainer>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-xs text-muted-foreground">Total</p>
+                      <p className="text-lg font-semibold">${total.toLocaleString()}</p>
+                    </div>
+                  </div>
                 </div>
                 <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
                   {data.map((d) => (
