@@ -115,4 +115,58 @@ All colors MUST be HSL.
 @layer utilities {
   .bg-hero { background: var(--gradient-hero); }
   .shadow-hero { box-shadow: var(--shadow-hero); }
+
+  /* Animations */
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-out {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); }
+  }
+  @keyframes scale-in {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes scale-out {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0; }
+  }
+  @keyframes slide-in-right {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes slide-out-right {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-fade-in { animation: fade-in 0.3s ease-out; }
+  .animate-fade-out { animation: fade-out 0.3s ease-out; }
+  .animate-scale-in { animation: scale-in 0.2s ease-out; }
+  .animate-scale-out { animation: scale-out 0.2s ease-out; }
+  .animate-slide-in-right { animation: slide-in-right 0.3s ease-out; }
+  .animate-slide-out-right { animation: slide-out-right 0.3s ease-out; }
+
+  /* Interactive utilities */
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+
+  .story-link { @apply relative inline-block; }
+  .story-link::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: hsl(var(--primary));
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 }
