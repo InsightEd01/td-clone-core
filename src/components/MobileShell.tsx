@@ -21,8 +21,8 @@ export default function MobileShell({ children }: PropsWithChildren) {
                 to={to}
                 end={to === "/"}
                 className={({ isActive }) =>
-                  `flex-1 flex flex-col items-center justify-center py-3 text-sm ${
-                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  `flex-1 flex flex-col items-center justify-center py-3 text-sm rounded-t-lg ${
+                    isActive ? "text-primary bg-accent/60" : "text-muted-foreground hover:text-foreground"
                   }`
                 }
                 aria-label={label}

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Send, Repeat, Receipt, Camera, Wallet } from "lucide-react";
+import { ArrowRight, Send, Repeat, Receipt, Camera, Wallet, ShoppingBag, Utensils, Banknote } from "lucide-react";
 import MobileShell from "@/components/MobileShell";
 import Seo from "@/components/Seo";
 
@@ -17,9 +18,9 @@ const accounts = [
 ];
 
 const transactions = [
-  { id: 1, name: "Uber Eats", time: "1h ago", amount: -5 },
-  { id: 2, name: "Amazon", time: "5h ago", amount: -10 },
-  { id: 3, name: "Payroll", time: "Yesterday", amount: 980 },
+  { id: 1, name: "Uber Eats", time: "1h ago", amount: -5, icon: Utensils },
+  { id: 2, name: "Amazon", time: "5h ago", amount: -10, icon: ShoppingBag },
+  { id: 3, name: "Payroll", time: "Yesterday", amount: 980, icon: Banknote },
 ];
 
 export default function Index() {
@@ -32,7 +33,7 @@ export default function Index() {
       />
 
       {/* Header / Hero */}
-      <section className="relative px-4 pt-8 pb-6 bg-hero text-primary-foreground">
+      <section className="relative px-4 pt-8 pb-6 bg-hero text-primary-foreground rounded-b-3xl">
         <div className="max-w-md mx-auto">
           <div className="flex items-center justify-between">
             <div>
@@ -40,6 +41,13 @@ export default function Index() {
               <h1 className="text-2xl font-semibold">Mobile Banking Dashboard</h1>
             </div>
             <Wallet className="h-6 w-6 opacity-90" aria-hidden />
+          </div>
+          <div className="mt-4">
+            <Input
+              placeholder="Search transactions"
+              aria-label="Search transactions"
+              className="bg-white/10 text-primary-foreground placeholder:opacity-80 border-white/20"
+            />
           </div>
 
           <Card className="mt-4 bg-background/10 backdrop-blur border-white/10">
@@ -56,7 +64,7 @@ export default function Index() {
               </div>
               <div className="mt-4 grid grid-cols-4 gap-2">
                 {actions.map(({ label, icon: Icon }) => (
-                  <Button key={label} variant="action" className="flex flex-col py-4">
+                  <Button key={label} variant="action" size="icon" className="h-16 w-16 flex flex-col">
                     <Icon className="h-5 w-5" />
                     <span className="mt-1 text-xs">{label}</span>
                   </Button>
@@ -92,18 +100,26 @@ export default function Index() {
       <section className="px-4 pb-6">
         <h2 className="text-lg font-semibold mb-2">Recent Transactions</h2>
         <div className="divide-y rounded-lg border">
-          {transactions.map((t) => (
-            <div key={t.id} className="flex items-center justify-between px-4 py-3">
-              <div>
-                <p className="text-sm font-medium">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.time}</p>
+            {transactions.map((t) => (
+              <div key={t.id} className="flex items-center justify-between px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-accent flex items-center justify-center">
+                    {(() => {
+                      const Icon = t.icon;
+                      return <Icon className="h-4 w-4 text-foreground" aria-hidden />;
+                    })()}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.time}</p>
+                  </div>
+                </div>
+                <p className={t.amount >= 0 ? "text-primary" : "text-foreground"}>
+                  {t.amount >= 0 ? "+$" : "-$"}
+                  {Math.abs(t.amount).toFixed(2)}
+                </p>
               </div>
-              <p className={t.amount >= 0 ? "text-primary" : "text-foreground"}>
-                {t.amount >= 0 ? "+$" : "-$"}
-                {Math.abs(t.amount).toFixed(2)}
-              </p>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
     </MobileShell>
