@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { NotificationSettings } from "@/components/NotificationSettings";
+import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
   name: "ASUNCION CALUMAG ERLINDA",
@@ -184,12 +186,18 @@ export default function Profile() {
           </CardContent>
         </Card>
 
-        {/* Notification Settings */}
+        {/* Push Notification Settings */}
+        <NotificationSettings />
+
+        {/* Notification Demo */}
+        <NotificationDemo />
+
+        {/* App Notification Settings */}
         <Card className="border-0 shadow-md">
           <CardHeader className="pb-3">
             <CardTitle className="text-lg flex items-center gap-2">
               <Bell className="h-5 w-5 text-emerald-600" />
-              Notifications
+              App Notifications
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">

@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "@/hooks/use-toast";
+import { useNotification } from "@/hooks/useNotification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,16 +19,17 @@ const schema = z.object({
 });
 
 export default function Transfer() {
+  const { notifyTransaction, notify } = useNotification();
   const accounts = mockdb.getAccounts();
   const form = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { from: accounts[0]?.id, to: accounts[1]?.id } });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
     try {
       mockdb.transfer(values.from, values.to, values.amount, values.note);
-      toast({ title: "Transfer complete", description: `${values.amount.toFixed(2)} moved` });
+      notifyTransaction(values.amount, 'sent', `${accounts.find(a => a.id === values.to)?.name || 'account'}`);
       form.reset({ from: values.from, to: values.to });
     } catch (e: any) {
-      toast({ title: "Error", description: e.message, variant: "destructive" });
+      notify({ title: "Transfer Error", description: e.message, variant: "destructive" });
     }
   };
 

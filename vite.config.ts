@@ -19,6 +19,9 @@ export default defineConfig(({ mode }) => ({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg}'],
         navigateFallback: null,
+        additionalManifestEntries: [
+          { url: '/sw-push.js', revision: null }
+        ],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

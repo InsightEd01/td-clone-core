@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "@/hooks/use-toast";
+import { useNotification } from "@/hooks/useNotification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,6 +19,7 @@ const schema = z.object({
 });
 
 export default function Bills() {
+  const { notifyTransaction, notify } = useNotification();
   const accounts = mockdb.getAccounts();
   const payees = mockdb.getPayees();
   const form = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { from: accounts[0]?.id, payeeId: payees[0]?.id } });
@@ -26,10 +27,11 @@ export default function Bills() {
   const onSubmit = (values: z.infer<typeof schema>) => {
     try {
       mockdb.payBill(values.from, values.payeeId, values.amount, values.note);
-      toast({ title: "Bill paid", description: `${values.amount.toFixed(2)} sent` });
+      const payee = payees.find(p => p.id === values.payeeId);
+      notifyTransaction(values.amount, 'sent', payee?.name || 'Bill Payment');
       form.reset({ from: values.from, payeeId: values.payeeId });
     } catch (e: any) {
-      toast({ title: "Error", description: e.message, variant: "destructive" });
+      notify({ title: "Bill Payment Error", description: e.message, variant: "destructive" });
     }
   };
 

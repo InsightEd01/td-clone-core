@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PWAUpdatePrompt } from "@/components/PWAUpdatePrompt";
 import { InstallPrompt } from "@/components/InstallPrompt";
+import { useEffect } from "react";
 import Index from "./pages/Index";
 import Accounts from "./pages/Accounts";
 import Payments from "./pages/Payments";
@@ -18,7 +19,28 @@ import Deposit from "./pages/payments/Deposit";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    // Register push notification service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw-push.js')
+        .then((registration) => {
+          console.log('Push SW registered:', registration);
+        })
+        .catch((error) => {
+          console.log('Push SW registration failed:', error);
+        });
+
+      // Listen for messages from service worker
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data && event.data.action === 'navigate') {
+          window.location.href = event.data.path;
+        }
+      });
+    }
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -42,6 +64,7 @@ const App = () => (
       <PWAUpdatePrompt />
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

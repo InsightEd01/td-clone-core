@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "@/hooks/use-toast";
+import { useNotification } from "@/hooks/useNotification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,16 +18,17 @@ const schema = z.object({
 });
 
 export default function Deposit() {
+  const { notifyTransaction, notify } = useNotification();
   const accounts = mockdb.getAccounts();
   const form = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema), defaultValues: { to: accounts[0]?.id } });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
     try {
       mockdb.deposit(values.to, values.amount, values.note);
-      toast({ title: "Deposit submitted", description: `${values.amount.toFixed(2)} added` });
+      notifyTransaction(values.amount, 'deposit');
       form.reset({ to: values.to });
     } catch (e: any) {
-      toast({ title: "Error", description: e.message, variant: "destructive" });
+      notify({ title: "Deposit Error", description: e.message, variant: "destructive" });
     }
   };
 

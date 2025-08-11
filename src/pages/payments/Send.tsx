@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { toast } from "@/hooks/use-toast";
+import { useNotification } from "@/hooks/useNotification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -56,6 +56,7 @@ const schema = z.object({
 type SendStep = "recipient" | "amount" | "review" | "processing" | "success";
 
 export default function Send() {
+  const { notifyTransaction, notify } = useNotification();
   const [currentStep, setCurrentStep] = useState<SendStep>("recipient");
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [showReceipt, setShowReceipt] = useState(false);
@@ -99,12 +100,9 @@ export default function Send() {
           setTransaction(tx);
           setCurrentStep("success");
           setIsProcessing(false);
-          toast({ 
-            title: "Money sent successfully!", 
-            description: `$${values.amount.toFixed(2)} sent to ${values.name || values.contact}` 
-          });
+          notifyTransaction(values.amount, 'sent', values.name || values.contact);
         } catch (e: any) {
-          toast({ title: "Error", description: e.message, variant: "destructive" });
+          notify({ title: "Send Error", description: e.message, variant: "destructive" });
           setCurrentStep("review");
           setIsProcessing(false);
         }
@@ -621,7 +619,7 @@ ${line()}`.trim();
                       size="sm" 
                       onClick={() => {
                         navigator.clipboard.writeText(transaction.id);
-                        toast({ title: "Copied!", description: "Transaction ID copied to clipboard" });
+                        notify({ title: "Copied!", description: "Transaction ID copied to clipboard" });
                       }}
                       className="flex flex-col items-center gap-1 h-auto py-3"
                     >
@@ -689,7 +687,7 @@ ${line()}`.trim();
                 a.download = `greenbank-receipt-${transaction?.id.slice(0, 8)}.txt`;
                 a.click();
                 URL.revokeObjectURL(url);
-                toast({ title: "Downloaded!", description: "Receipt saved to your device" });
+                notify({ title: "Downloaded!", description: "Receipt saved to your device" });
               }}
               className="flex-1"
             >
@@ -735,7 +733,7 @@ ${line()}`.trim();
                   printWindow.print();
                   printWindow.close();
                 }
-                toast({ title: "Printing...", description: "Receipt sent to printer" });
+                notify({ title: "Printing...", description: "Receipt sent to printer" });
               }}
               className="flex-1"
             >
