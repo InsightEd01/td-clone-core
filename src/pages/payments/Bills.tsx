@@ -37,7 +37,7 @@ export default function Bills() {
 
   return (
     <MobileShell>
-      <Seo title="Pay Bills — GreenBank" description="Manage and pay your bills." canonical={window.location.href} />
+      <Seo title="Pay Bills — GCB" description="Manage and pay your bills." canonical={window.location.href} />
       <section className="p-4 animate-fade-in">
         <h1 className="text-xl font-semibold mb-3">Pay Bills</h1>
         <Card>

@@ -30,7 +30,7 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Estela logdat",
+  name: "Estela Logdat",
   country: "Philippines",
   dateOfBirth: "December 8, 1955"
 };
@@ -71,7 +71,7 @@ export default function Profile() {
 
   return (
     <MobileShell>
-      <Seo title="Profile — GreenBank" description="Manage your preferences and settings." canonical={window.location.href} />
+      <Seo title="Profile — GCB" description="Manage your preferences and settings." canonical={window.location.href} />
       
       {/* Header */}
       <section className="relative px-4 pt-6 pb-4 bg-gradient-to-b from-emerald-700 to-emerald-900 text-primary-foreground animate-fade-in">
@@ -288,9 +288,9 @@ export default function Profile() {
         <Card className="border-0 shadow-md">
           <CardContent className="p-4">
             <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground">GreenBank Mobile</p>
+              <p className="text-sm text-muted-foreground">GCB Mobile</p>
               <p className="text-xs text-muted-foreground">Version 2.1.4</p>
-              <p className="text-xs text-muted-foreground">© 2025 GreenBank. All rights reserved.</p>
+              <p className="text-xs text-muted-foreground">© 2025 GCB. All rights reserved.</p>
             </div>
           </CardContent>
         </Card>

@@ -34,7 +34,7 @@ export default function Deposit() {
 
   return (
     <MobileShell>
-      <Seo title="Mobile Deposit — GreenBank" description="Deposit checks from your phone." canonical={window.location.href} />
+      <Seo title="Mobile Deposit — GCB" description="Deposit checks from your phone." canonical={window.location.href} />
       <section className="p-4 animate-fade-in">
         <h1 className="text-xl font-semibold mb-3">Mobile Deposit</h1>
         <Card>

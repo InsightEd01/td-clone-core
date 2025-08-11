@@ -102,7 +102,7 @@ export default function Index() {
   return (
     <MobileShell>
       <Seo
-        title="GreenBank Dashboard — Mobile Banking"
+        title="GCB Dashboard — Mobile Banking"
         description="View balances, send money, pay bills, and track spending in a mobile-first banking dashboard."
         canonical={window.location.href}
       />

@@ -168,7 +168,7 @@ export default function Send() {
     };
     
     return `${line()}
-${center("GREENBANK")}
+${center("GCB")}
 ${center("Transaction Receipt")}
 ${line()}
 
@@ -212,14 +212,14 @@ ${line("-")}
 ${line("-")}
 CUSTOMER SERVICE
 ${line("-")}
-Phone: 1-800-GREENBANK
-Web: www.greenbank.com
-Mobile: GreenBank App
+Phone: 1-800-GCB
+Web: www.gcb.com
+Mobile: GCB App
 
 Available 24/7 for support
 
 ${center("Thank you for choosing")}
-${center("GreenBank!")}
+${center("GCB!")}
 
 ${center("Keep this receipt for")}
 ${center("your records")}
@@ -228,7 +228,7 @@ ${line()}`.trim();
 
   return (
     <MobileShell>
-      <Seo title="Send Money — GreenBank" description="Send money securely to contacts." canonical={window.location.href} />
+      <Seo title="Send Money — GCB" description="Send money securely to contacts." canonical={window.location.href} />
       
       {/* Header */}
       <section className="relative px-4 pt-6 pb-4 bg-gradient-to-b from-emerald-700 to-emerald-900 text-primary-foreground">
@@ -632,7 +632,7 @@ ${line()}`.trim();
                       onClick={() => {
                         if (navigator.share) {
                           navigator.share({
-                            title: 'GreenBank Transfer Receipt',
+                            title: 'GCB Transfer Receipt',
                             text: `Transfer of $${Math.abs(transaction.amount).toFixed(2)} completed. Transaction ID: ${transaction.id.slice(0, 8).toUpperCase()}`
                           });
                         }
@@ -684,7 +684,7 @@ ${line()}`.trim();
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `greenbank-receipt-${transaction?.id.slice(0, 8)}.txt`;
+                a.download = `gcb-receipt-${transaction?.id.slice(0, 8)}.txt`;
                 a.click();
                 URL.revokeObjectURL(url);
                 notify({ title: "Downloaded!", description: "Receipt saved to your device" });
@@ -703,7 +703,7 @@ ${line()}`.trim();
                     <!DOCTYPE html>
                     <html>
                     <head>
-                      <title>GreenBank Receipt</title>
+                      <title>GCB Receipt</title>
                       <style>
                         @page { 
                           size: 80mm auto; 

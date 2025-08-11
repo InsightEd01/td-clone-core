@@ -51,7 +51,7 @@ export default function Accounts() {
 
   return (
     <MobileShell>
-      <Seo title="Accounts — GreenBank" description="View and manage all your accounts." canonical={window.location.href} />
+      <Seo title="Accounts — GCB" description="View and manage all your accounts." canonical={window.location.href} />
       
       {/* Header with Total Balance */}
       <section className="relative px-4 pt-6 pb-4 bg-gradient-to-b from-emerald-700 to-emerald-900 text-primary-foreground animate-fade-in">

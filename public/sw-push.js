@@ -11,7 +11,7 @@ self.addEventListener('push', function(event) {
     data = event.data.json();
   } catch (e) {
     data = {
-      title: 'GreenBank Notification',
+      title: 'GCB Notification',
       body: event.data.text() || 'You have a new notification',
       icon: '/logo.png',
       badge: '/logo.png'

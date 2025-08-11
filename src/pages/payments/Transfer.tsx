@@ -35,7 +35,7 @@ export default function Transfer() {
 
   return (
     <MobileShell>
-      <Seo title="Transfer — GreenBank" description="Transfer between your accounts." canonical={window.location.href} />
+      <Seo title="Transfer — GCB" description="Transfer between your accounts." canonical={window.location.href} />
       <section className="p-4 animate-fade-in">
         <h1 className="text-xl font-semibold mb-3">Transfer</h1>
         <Card>

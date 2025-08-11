@@ -28,7 +28,7 @@ type DB = {
   recipients: Recipient[];
 };
 
-const KEY = "greenbank.db.v1";
+const KEY = "gcb.db.v1";
 
 function seed(): DB {
   const db: DB = {

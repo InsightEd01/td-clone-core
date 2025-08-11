@@ -91,7 +91,7 @@ const paymentServices = [
 export default function Payments() {
   return (
     <MobileShell>
-      <Seo title="Payments — GreenBank" description="Send, transfer, pay bills, and deposit checks." canonical={window.location.href} />
+      <Seo title="Payments — GCB" description="Send, transfer, pay bills, and deposit checks." canonical={window.location.href} />
       
       {/* Header */}
       <section className="relative px-4 pt-6 pb-4 bg-gradient-to-b from-emerald-700 to-emerald-900 text-primary-foreground animate-fade-in">

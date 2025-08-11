@@ -15,7 +15,7 @@ export function InstallPrompt() {
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-sm">
               <Download className="h-4 w-4" />
-              Install GreenBank
+              Install GCB
             </CardTitle>
             <Button
               size="sm"

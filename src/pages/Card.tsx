@@ -22,7 +22,7 @@ export default function CardPage() {
   const total = data.reduce((sum, d) => sum + d.value, 0);
   return (
     <MobileShell>
-      <Seo title="Debit Card — GreenBank" description="View card details, history and analytics." canonical={window.location.href} />
+      <Seo title="Debit Card — GCB" description="View card details, history and analytics." canonical={window.location.href} />
       <section className="px-4 pt-6 pb-4 bg-hero text-primary-foreground rounded-b-3xl">
         <div className="max-w-md mx-auto">
           <h1 className="text-xl font-semibold">Debit Card</h1>

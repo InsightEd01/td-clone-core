@@ -38,8 +38,8 @@ export default defineConfig(({ mode }) => ({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'logo.png'],
       manifest: {
-        name: 'GreenBank — Mobile Banking',
-        short_name: 'GreenBank',
+        name: 'GCB — Mobile Banking',
+        short_name: 'GCB',
         description: 'Mobile-first banking web app: balances, transfers, bills, and insights.',
         theme_color: '#10b981',
         background_color: '#ffffff',
