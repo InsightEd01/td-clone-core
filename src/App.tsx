@@ -20,23 +20,20 @@ import Deposit from "./pages/payments/Deposit";
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    // Register push notification service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw-push.js')
-        .then((registration) => {
-          console.log('Push SW registered:', registration);
-        })
-        .catch((error) => {
-          console.log('Push SW registration failed:', error);
-        });
+  // Service worker registration is handled by vite-plugin-pwa via useRegisterSW (see usePWA hook).
+  // Avoid registering another SW (e.g., /sw-push.js) in the same scope to prevent conflicts/refresh loops.
 
-      // Listen for messages from service worker
-      navigator.serviceWorker.addEventListener('message', (event) => {
-        if (event.data && event.data.action === 'navigate') {
-          window.location.href = event.data.path;
-        }
-      });
+  // Cleanup: if an older custom SW ('/sw-push.js') was previously registered, unregister it.
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((regs) => {
+        regs.forEach((reg) => {
+          const url = reg.active?.scriptURL || reg.installing?.scriptURL || reg.waiting?.scriptURL;
+          if (url && url.endsWith('/sw-push.js')) {
+            reg.unregister();
+          }
+        });
+      }).catch(() => {});
     }
   }, []);
 
