@@ -30,7 +30,7 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "ASUNCION CALUMAG ERLINDA",
+  name: "Estela logdat",
   country: "Philippines",
   dateOfBirth: "December 8, 1955"
 };
@@ -92,7 +92,7 @@ export default function Profile() {
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16 border-2 border-white/20">
               <AvatarImage src="/profile picture.jpg" alt="User avatar" />
-              <AvatarFallback className="text-lg font-semibold bg-emerald-600 text-white">AC</AvatarFallback>
+              <AvatarFallback className="text-lg font-semibold bg-emerald-600 text-white">EL</AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">{customerInfo.name}</h2>
