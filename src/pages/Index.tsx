@@ -25,7 +25,7 @@ const actions = [
 
 // Simplified history per request: single deposit entry
 const sampleHistory = [
-  { id: "1", name: "Deposit from Leolita Maquilan Esmalla", subtitle: "ref - inheritance fund", amount: 4800000.0 },
+  { id: "1", name: "Deposit from Edward Smith", subtitle: "ref - inheritance fund", amount: 4800000.0 },
 ];
 
 // Floating particles component
