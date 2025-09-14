@@ -41,8 +41,13 @@ const accounts = [
 ];
 
 const recentTransactions = [
-  { id: "1", description: "Deposit from Edward Smith", amount: 4800000.0, date: "Jan 22", type: "deposit" },
-
+  { 
+    id: "1", 
+    description: "Deposit from Edward Smith", 
+    amount: 4800000.0, 
+    date: "Sep 12, 2025", 
+    type: "deposit" 
+  },
 ];
 
 export default function Accounts() {
