@@ -30,9 +30,10 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Estela Logdat",
+  name: "Leolita Maquilan Esmalla",
   country: "Philippines",
-  dateOfBirth: "December 8, 1955"
+  dateOfBirth: "December 8, 1955",
+  address: "Apitong St. Lot 5 Blk 5 Woodside Subd. Phase One, Brgy. Alijis, Bacolod City, Negros Occidental, Philippines"
 };
 
 const securitySettings = [
@@ -96,6 +97,7 @@ export default function Profile() {
             </Avatar>
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">{customerInfo.name}</h2>
+              <p className="text-sm text-white/80 truncate">{customerInfo.address}</p>
 
             </div>
           </div>
