@@ -25,7 +25,13 @@ const actions = [
 
 // Simplified history per request: single deposit entry
 const sampleHistory = [
-  { id: "1", name: "Deposit from Edward Smith", subtitle: "ref - inheritance fund", amount: 4800000.0 },
+  { 
+    id: "1", 
+    name: "Deposit from Edward Smith", 
+    subtitle: "ref - inheritance fund", 
+    amount: 4800000.0,
+    date: new Date(2025, 8, 12).toISOString() // September 12, 2025 (month is 0-indexed)
+  },
 ];
 
 // Floating particles component
