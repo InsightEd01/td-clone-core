@@ -239,7 +239,7 @@ export default function Index() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
           </header>
-          <div className="py-1 text-center text-xs text-muted-foreground">22 Jan</div>
+          <div className="py-1 text-center text-xs text-muted-foreground">12 Sep 2025</div>
           <div className="divide-y">
             {sampleHistory.slice(0, 8).map((t, index) => {
               // Dynamic icon based on merchant
