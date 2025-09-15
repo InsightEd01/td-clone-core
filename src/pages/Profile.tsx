@@ -32,7 +32,7 @@ import { NotificationDemo } from "@/components/NotificationDemo";
 const customerInfo = {
   name: "Leolita Maquilan Esmalla",
   country: "Philippines",
-  dateOfBirth: "December 8, 1955",
+  dateOfBirth: "August 28, 1956",
   address: "Apitong St. Lot 5 Blk 5 Woodside Subd. Phase One, Brgy. Alijis, Bacolod City, Negros Occidental, Philippines"
 };
 
