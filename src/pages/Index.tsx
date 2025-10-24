@@ -27,12 +27,14 @@ const actions = [
 const sampleHistory = [
   { 
     id: "1", 
-    name: "Deposit from Edward Smith", 
+    name: "Deposit from Marissa Cayabo Aguirre", 
     subtitle: "ref - inheritance fund", 
-    amount: 4800000.0,
-    date: new Date(2025, 8, 12).toISOString() // September 12, 2025 (month is 0-indexed)
+    amount: 425,
+    date: new Date(2025, 9, 24).toISOString() // October 24, 2025 (month is 0-indexed)
   },
 ];
+
+const mainBalance = 425;
 
 // Floating particles component
 const FloatingParticles = () => {
@@ -105,6 +107,9 @@ export default function Index() {
     }
     touchStartX.current = null;
   };
+
+  const formattedMainBalance = mainBalance.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
   return (
     <MobileShell>
       <Seo
@@ -171,7 +176,7 @@ export default function Index() {
                       </div>
                     </div>
                     <p className="mt-6 text-3xl font-semibold text-white">
-                      {showBalance ? "$4,800,000 USD" : "•••••••• USD"}
+                      {showBalance ? `$${formattedMainBalance} USD` : "•••••••• USD"}
                     </p>
                   </div>
                 </NavLink>
@@ -239,7 +244,7 @@ export default function Index() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
           </header>
-          <div className="py-1 text-center text-xs text-muted-foreground">12 Sep 2025</div>
+          <div className="py-1 text-center text-xs text-muted-foreground">24 Oct 2025</div>
           <div className="divide-y">
             {sampleHistory.slice(0, 8).map((t, index) => {
               // Dynamic icon based on merchant

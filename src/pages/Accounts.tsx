@@ -14,8 +14,8 @@ const accounts = [
     name: "Unlimited Chequing",
     type: "Checking",
     accountNumber: "****6789",
-    balance: 4800000.0,
-    availableBalance: 4800000.0,
+    balance: 425.0,
+    availableBalance: 425.0,
     interestRate: 0.05,
     lastStatement: "Jan 15, 2025",
     status: "Active",
@@ -28,8 +28,8 @@ const accounts = [
     name: "Every Day Savings",
     type: "Savings",
     accountNumber: "****3421",
-    balance: 4800000.0,
-    availableBalance: 4800000.0,
+    balance: 425.0,
+    availableBalance: 425.0,
     interestRate: 4.25,
     lastStatement: "Jan 15, 2025",
     status: "Active",
@@ -43,9 +43,9 @@ const accounts = [
 const recentTransactions = [
   { 
     id: "1", 
-    description: "Deposit from Edward Smith", 
-    amount: 4800000.0, 
-    date: "Sep 12, 2025", 
+    description: "Deposit from Marissa Cayabo Aguirre", 
+    amount: 425.0, 
+    date: "Oct 24, 2025", 
     type: "deposit" 
   },
 ];

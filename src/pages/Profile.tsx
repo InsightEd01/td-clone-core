@@ -30,10 +30,10 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Leolita Maquilan Esmalla",
+  name: "Marissa Cayabo Aguirre",
   country: "Philippines",
-  dateOfBirth: "August 28, 1956",
-  address: "Apitong St. Lot 5 Blk 5 Woodside Subd. Phase One, Brgy. Alijis, Bacolod City, Negros Occidental, Philippines"
+  dateOfBirth: "April 28, 1968",
+  address: "Cadre Site, Bayambang, Pangasinan, Philippines, 2423"
 };
 
 const securitySettings = [
