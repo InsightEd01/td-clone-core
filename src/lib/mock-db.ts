@@ -33,8 +33,8 @@ const KEY = "gcb.db.v1";
 function seed(): DB {
   const db: DB = {
     accounts: [
-      { id: "chq", name: "Unlimited Chequing", balance: 425.0 },
-      { id: "svg", name: "Every Day Savings", balance: 425.0 },
+      { id: "chq", name: "Unlimited Chequing", balance: 4,200,425.0 },
+      { id: "svg", name: "Every Day Savings", balance: 4,200,425.0 },
     ],
     transactions: [],
     payees: [
