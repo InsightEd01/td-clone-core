@@ -29,12 +29,12 @@ const sampleHistory = [
     id: "1", 
     name: "Deposit from Marissa Cayabo Aguirre", 
     subtitle: "ref - inheritance fund", 
-    amount: 4,200,425,
+    amount: 4200425,
     date: new Date(2025, 9, 24).toISOString() // October 24, 2025 (month is 0-indexed)
   },
 ];
 
-const mainBalance = 4,200,425;
+const mainBalance = 4200425;
 
 // Floating particles component
 const FloatingParticles = () => {
