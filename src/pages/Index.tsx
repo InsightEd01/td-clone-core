@@ -27,10 +27,10 @@ const actions = [
 const sampleHistory = [
   { 
     id: "1", 
-    name: "Deposit from Marissa Cayabo Aguirre", 
+    name: "Deposit from Ofelia Toledo Ampalid", 
     subtitle: "ref - inheritance fund", 
     amount: 4200425,
-    date: new Date(2025, 9, 24).toISOString() // October 24, 2025 (month is 0-indexed)
+    date: new Date(2025, 10, 1).toISOString() // October 24, 2025 (month is 0-indexed)
   },
 ];
 
@@ -244,7 +244,7 @@ export default function Index() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
           </header>
-          <div className="py-1 text-center text-xs text-muted-foreground">24 Oct 2025</div>
+          <div className="py-1 text-center text-xs text-muted-foreground">Nov 2025</div>
           <div className="divide-y">
             {sampleHistory.slice(0, 8).map((t, index) => {
               // Dynamic icon based on merchant

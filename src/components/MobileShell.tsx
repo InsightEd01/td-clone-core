@@ -12,7 +12,7 @@ const navItems = [
 
 // Fixed profile (no editing)
 const FIXED_PROFILE = {
-  name: "Marissa Cayabo Aguirre",
+  name: "Ofelia Toledo Ampalid",
   avatarUrl: "/profile picture.jpg",
 } as const;
 

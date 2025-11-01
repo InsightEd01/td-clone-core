@@ -17,7 +17,7 @@ const accounts = [
     balance: 4200425.0,
     availableBalance: 4200425.0,
     interestRate: 0.05,
-    lastStatement: "Jan 15, 2025",
+    lastStatement: "Nov, 2025",
     status: "Active",
     overdraftProtection: true,
     icon: CreditCard,
@@ -43,9 +43,9 @@ const accounts = [
 const recentTransactions = [
   { 
     id: "1", 
-    description: "Deposit from Marissa Cayabo Aguirre", 
+    description: "Deposit from Ofelia Toledo Ampalid", 
     amount: 4200425.0, 
-    date: "Oct 24, 2025", 
+    date: "Nov, 2025", 
     type: "deposit" 
   },
 ];

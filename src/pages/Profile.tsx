@@ -30,10 +30,10 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Marissa Cayabo Aguirre",
+  name: "Ofelia Toledo Ampalid",
   country: "Philippines",
-  dateOfBirth: "April 28, 1968",
-  address: "Cadre Site, Bayambang, Pangasinan, Philippines, 2423"
+  dateOfBirth: "25 APR 1955",
+  address: "Koronadal South Cotabato, Philippines"
 };
 
 const securitySettings = [
