@@ -12,6 +12,7 @@ import Payments from "./pages/Payments";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import CardPage from "./pages/Card";
+import AtmPage from "./pages/Atm";
 import Send from "./pages/payments/Send";
 import Transfer from "./pages/payments/Transfer";
 import Bills from "./pages/payments/Bills";
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/payments/deposit" element={<Deposit />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/card" element={<CardPage />} />
+          <Route path="/atm" element={<AtmPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,9 +1,11 @@
 import MobileShell from "@/components/MobileShell";
 import Seo from "@/components/Seo";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Banknote, ShoppingBag, Utensils } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const tx = [
   { id: 1, name: "Uber Eats", time: "1h ago", amount: -5, icon: Utensils },
@@ -26,18 +28,26 @@ export default function CardPage() {
       <section className="px-4 pt-6 pb-4 bg-hero text-primary-foreground rounded-b-3xl">
         <div className="max-w-md mx-auto">
           <h1 className="text-xl font-semibold">Debit Card</h1>
-          <p className="text-sm opacity-80 mt-1">1111 •••• •••• 1111 • Expires 05/27</p>
+          <p className="text-sm opacity-80 mt-1">5214 •••• •••• 3456 • Expires 11/30</p>
           <Card className="mt-4 bg-background/10 backdrop-blur border-white/10">
             <CardContent className="pt-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs opacity-80">Current Balance</p>
-                  <p className="text-3xl font-bold">$4,800,000.00 USD</p>
+                  <p className="text-3xl font-bold">$4,800,500.00 USD</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs opacity-80">Apple Pay</p>
                   <p className="text-xs opacity-80">Enabled</p>
                 </div>
+              </div>
+
+              <div className="mt-4">
+                <NavLink to="/atm" className="block">
+                  <Button className="w-full" variant="secondary">
+                    View ATM details
+                  </Button>
+                </NavLink>
               </div>
             </CardContent>
           </Card>

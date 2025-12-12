@@ -33,18 +33,15 @@ const KEY = "gcb.db.v1";
 function seed(): DB {
   const db: DB = {
     accounts: [
-      { id: "chq", name: "Unlimited Chequing", balance: 4200425.0 },
-      { id: "svg", name: "Every Day Savings", balance: 4200425.0 },
+      { id: "chq", name: "Unlimited Chequing", balance: 4800500.0 },
+      { id: "svg", name: "Every Day Savings", balance: 4800500.0 },
     ],
     transactions: [],
     payees: [
       { id: "hydro", name: "City Hydro", accountNumber: "00012345" },
       { id: "visa", name: "Visa Card", accountNumber: "4111 1111" },
     ],
-    recipients: [
-      { id: "jay", name: "Jayden", contact: "jayden@example.com" },
-      { id: "amy", name: "Amy", contact: "+1 (555) 123-9876" },
-    ],
+    recipients: [],
   };
   localStorage.setItem(KEY, JSON.stringify(db));
   return db;
@@ -54,7 +51,11 @@ function load(): DB {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return seed();
-    return JSON.parse(raw) as DB;
+    const db = JSON.parse(raw) as DB;
+    const beforeCount = db.recipients?.length ?? 0;
+    db.recipients = (db.recipients || []).filter((r) => r.id !== "jay" && r.id !== "amy");
+    if ((db.recipients?.length ?? 0) !== beforeCount) save(db);
+    return db;
   } catch {
     return seed();
   }

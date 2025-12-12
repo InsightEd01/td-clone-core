@@ -30,10 +30,10 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Ofelia Toledo Ampalid",
+  name: "Gina Fabro Jasmin",
   country: "Philippines",
-  dateOfBirth: "25 APR 1955",
-  address: "Koronadal South Cotabato, Philippines"
+  dateOfBirth: "August 23, 1973",
+  address: "Home address: Andres Bonifacio\nDiffun, Quirino, Province\n3401"
 };
 
 const securitySettings = [
@@ -97,7 +97,7 @@ export default function Profile() {
             </Avatar>
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">{customerInfo.name}</h2>
-              <p className="text-sm text-white/80 truncate">{customerInfo.address}</p>
+              <p className="text-sm text-white/80 whitespace-pre-line">{customerInfo.address}</p>
 
             </div>
           </div>

@@ -9,11 +9,11 @@ import Seo from "@/components/Seo";
 import { useEffect, useRef, useState } from "react";
 
 const actions = [
-  { label: "Send", icon: DollarSign },
-  { label: "Transfer", icon: Repeat },
-  { label: "Pay Bill", icon: Receipt },
+  { label: "Send", icon: DollarSign, to: "/payments/send" },
+  { label: "Transfer", icon: Repeat, to: "/payments/transfer" },
+  { label: "Pay Bill", icon: Receipt, to: "/payments/bills" },
   { label: "Add", icon: Plus },
-  { label: "Deposit", icon: Banknote },
+  { label: "Deposit", icon: Banknote, to: "/payments/deposit" },
   { label: "Request", icon: Search },
   { label: "Split Bill", icon: ChevronRight },
   { label: "Invest", icon: Repeat },
@@ -27,14 +27,14 @@ const actions = [
 const sampleHistory = [
   { 
     id: "1", 
-    name: "Deposit from Ofelia Toledo Ampalid", 
-    subtitle: "ref - inheritance fund", 
-    amount: 4200425,
-    date: new Date(2025, 10, 1).toISOString() // October 24, 2025 (month is 0-indexed)
+    name: "Deposit from Gina Fabro Jasmin", 
+    subtitle: "from inherited fund", 
+    amount: 4800500.0,
+    date: "12/12/2025"
   },
 ];
 
-const mainBalance = 4200425;
+const mainBalance = 4800500;
 
 // Floating particles component
 const FloatingParticles = () => {
@@ -91,7 +91,7 @@ export default function Index() {
   const touchStartX = useRef<number | null>(null);
   const SWIPE_THRESHOLD = 50; // px
   const cards = [
-    { label: "Debit card", masked: "4567 **** **** 6789", expiry: "05/27", variant: "default" as const },
+    { label: "Debit card", masked: "5214 **** **** 3456", expiry: "11/30", variant: "default" as const },
     { label: "Credit card", masked: "5454 **** **** 3421", expiry: "07/29", variant: "yellow" as const },
   ];
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -144,16 +144,9 @@ export default function Index() {
                     <div className="flex items-center justify-between text-white/90">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <svg
-                            className="h-5 w-7"
-                            viewBox="0 0 48 30"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden
-                          >
-                            <circle cx="18" cy="15" r="10" fill="#EB001B" />
-                            <circle cx="30" cy="15" r="10" fill="#F79E1B" />
-                            <rect x="18" y="7" width="12" height="16" fill="#FF5F00" />
-                          </svg>
+                          <span className="text-[18px] font-black italic tracking-wider leading-none text-white">
+                            VISA
+                          </span>
                           <p className="text-sm text-white/95">{c.label}</p>
                         </div>
                         <p className="mt-2 text-sm font-mono tracking-[0.25em] text-white/90">{c.masked}</p>
@@ -198,8 +191,8 @@ export default function Index() {
       <section className="px-4 py-4 -mt-1">
         <div className="max-w-md mx-auto bg-gradient-to-b from-emerald-700 to-emerald-900 rounded-2xl p-4 shadow-lg">
           <div className="grid grid-cols-4 gap-2">
-            {actions.slice(0, 4).map(({ label, icon: Icon }, index) => (
-              <div key={label} className="flex flex-col items-center">
+            {actions.slice(0, 4).map(({ label, icon: Icon, to }, index) => {
+              const content = (
                 <Button
                   aria-label={label}
                   variant="action"
@@ -212,12 +205,14 @@ export default function Index() {
                   active:translate-y-0 active:scale-95 active:shadow-[inset_0_3px_6px_rgba(0,0,0,0.45),0_6px_12px_rgba(0,0,0,0.25)]
                   animate-fade-in"
                   style={{ animationDelay: `${index * 100}ms` }}
-                  onClick={() => {
+                  onClick={(e) => {
+                    if (to) return;
                     // Add haptic-style visual feedback
                     const button = document.activeElement as HTMLElement;
                     button?.classList.add('animate-pulse');
                     setTimeout(() => button?.classList.remove('animate-pulse'), 200);
                     toast({ title: label, description: "Coming soon" });
+                    e.preventDefault();
                   }}
                 >
                   <Icon
@@ -226,11 +221,23 @@ export default function Index() {
                     aria-hidden
                   />
                 </Button>
-                <span className="mt-1 w-16 text-[11px] font-medium leading-tight text-center text-white/95 whitespace-normal">
-                  {label}
-                </span>
-              </div>
-            ))}
+              );
+
+              return (
+                <div key={label} className="flex flex-col items-center">
+                  {to ? (
+                    <NavLink to={to} className="contents">
+                      {content}
+                    </NavLink>
+                  ) : (
+                    content
+                  )}
+                  <span className="mt-1 w-16 text-[11px] font-medium leading-tight text-center text-white/95 whitespace-normal">
+                    {label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -244,7 +251,7 @@ export default function Index() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
           </header>
-          <div className="py-1 text-center text-xs text-muted-foreground">Nov 2025</div>
+          <div className="py-1 text-center text-xs text-muted-foreground">12/12/2025</div>
           <div className="divide-y">
             {sampleHistory.slice(0, 8).map((t, index) => {
               // Dynamic icon based on merchant
