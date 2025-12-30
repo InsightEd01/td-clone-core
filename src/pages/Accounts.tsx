@@ -17,7 +17,7 @@ const accounts = [
     balance: 4800500.0,
     availableBalance: 4800500.0,
     interestRate: 0.05,
-    lastStatement: "12/12/2025",
+    lastStatement: "29/12/2025",
     status: "Active",
     overdraftProtection: true,
     icon: CreditCard,
@@ -31,7 +31,7 @@ const accounts = [
     balance: 4800500.0,
     availableBalance: 4800500.0,
     interestRate: 4.25,
-    lastStatement: "12/12/2025",
+    lastStatement: "29/12/2025",
     status: "Active",
     overdraftProtection: false,
     icon: PiggyBank,
@@ -43,9 +43,9 @@ const accounts = [
 const recentTransactions = [
   { 
     id: "1", 
-    description: "Deposit from inherited fund", 
+    description: "Deposit from Myrna Williams", 
     amount: 4800500.0, 
-    date: "12/12/2025", 
+    date: "12/29/2025", 
     type: "deposit" 
   },
 ];

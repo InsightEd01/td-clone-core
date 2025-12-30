@@ -28,9 +28,9 @@ const sampleHistory = [
   { 
     id: "1", 
     name: "Deposit from Myrna Williams", 
-    subtitle: "from inherited fund", 
+    subtitle: " inherited fund", 
     amount: 4800500.0,
-    date: "12/12/2025"
+    date: "12/29/2025"
   },
 ];
 
@@ -251,7 +251,7 @@ export default function Index() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </button>
           </header>
-          <div className="py-1 text-center text-xs text-muted-foreground">12/12/2025</div>
+          <div className="py-1 text-center text-xs text-muted-foreground">29/12/2025</div>
           <div className="divide-y">
             {sampleHistory.slice(0, 8).map((t, index) => {
               // Dynamic icon based on merchant
