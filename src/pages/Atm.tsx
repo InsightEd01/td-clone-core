@@ -40,7 +40,7 @@ export default function AtmPage() {
     () => ({
       cardNumber: "5214 5678 9012 3456",
       expiry: "11/30",
-      cardholder: "Jasmin Gina Fabro",
+      cardholder: "Myrna Williams",
       cvv: "123",
       pin: "4321",
       dailyLimit: "₱ 4,800,500.00",

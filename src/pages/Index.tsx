@@ -27,7 +27,7 @@ const actions = [
 const sampleHistory = [
   { 
     id: "1", 
-    name: "Deposit from Gina Fabro Jasmin", 
+    name: "Deposit from Myrna Williams", 
     subtitle: "from inherited fund", 
     amount: 4800500.0,
     date: "12/12/2025"

@@ -30,10 +30,10 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationDemo } from "@/components/NotificationDemo";
 
 const customerInfo = {
-  name: "Gina Fabro Jasmin",
-  country: "Philippines",
-  dateOfBirth: "August 23, 1973",
-  address: "Home address: Andres Bonifacio\nDiffun, Quirino, Province\n3401"
+  name: "Myrna Williams",
+  country: "Australia",
+  dateOfBirth: "April 25, 1959",
+  address: "Home address: 41 gardener rd\nDaceyville New South Wales 2032\nAustralia"
 };
 
 const securitySettings = [
